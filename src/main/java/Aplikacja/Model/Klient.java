@@ -22,4 +22,5 @@ public class Klient extends Uzytkownik {
 	{
 		rezerwacje.add(r);
 	}
+
 }

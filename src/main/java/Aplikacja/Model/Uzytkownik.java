@@ -79,4 +79,13 @@ public class Uzytkownik {
 	{
 		komunikaty.add(k);
 	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		Uzytkownik that = (Uzytkownik) o;
+		return Objects.equals(imie, that.imie) && Objects.equals(nazwisko, that.nazwisko) && Objects.equals(email, that.email) && Objects.equals(haslo, that.haslo);
+	}
+
 }
