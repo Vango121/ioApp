@@ -13,7 +13,7 @@ public class Controller {
     private static ArrayList<Uzytkownik> administratorzy = new ArrayList<>();
     private static ArrayList<Komunikat> komunikaty = new ArrayList<>();
     private static ArrayList<Klient> klienci = new ArrayList<>();
-    private static ArrayList<Pokoj> pokoje = new ArrayList<>();
+    public static ArrayList<Pokoj> pokoje = new ArrayList<>();
     public static ArrayList<Rezerwacja> rezerwacje = new ArrayList<>();
     private static Uzytkownik aktualnyUzytkownik;
     private static int counter = 0;

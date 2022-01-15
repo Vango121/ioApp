@@ -25,6 +25,7 @@ public class ControllerTest {
     void init() {
         dane = new Dane();
         Controller.rezerwacje.addAll(List.of(dane.rezerwacje));
+        Controller.pokoje.addAll(List.of(dane.pokoje));
     }
 
     private static Stream<Arguments> addFixture() {
@@ -45,5 +46,10 @@ public class ControllerTest {
         Controller.zatwierdzRezerwacje(number);
         assertEquals("Zatwierdzona",Controller.rezerwacje.get(number).getStatus());
     }
-
+    @ParameterizedTest
+    @ValueSource(ints = {0,1})
+    void testSzukajPokoj(int number){
+        Controller.szukajPokoj(number);
+        assertEquals(dane.pokoje[number].getNumer(),Controller.szukajPokoj(number).getNumer());
+    }
 }
