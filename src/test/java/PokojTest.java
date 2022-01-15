@@ -6,6 +6,9 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -15,6 +18,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class PokojTest {
     static Dane dane;
     static Pokoj instances[];
+    static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
     @BeforeAll
     void init() {
@@ -27,6 +31,11 @@ public class PokojTest {
     private static Stream<Arguments> addFixture() {
         return Stream.of(
                 Arguments.of((Object) dane.rezerwacje));
+    }
+    private static Stream<Arguments> provideDates(){
+        return Stream.of(
+                Arguments.of(dane.daty)
+        );
     }
 
     @ParameterizedTest
@@ -41,11 +50,7 @@ public class PokojTest {
         }
         assertEquals(4, instances[0].getRezerwacje().size());
         assertEquals(4, instances[1].getRezerwacje().size());
-    }
 
-    @ParameterizedTest
-    @MethodSource("addFixture")
-    void testSprawdzRezerwacje(Rezerwacja[] rezerwacje) {
         //instances[0] - pokoj[0] sprawdz
         for (int i = 0; i <4; i++) {
             if(i<2){
@@ -59,6 +64,18 @@ public class PokojTest {
                 assertNotEquals(instances[1],rezerwacje[i].getPokoj());
             }else{
                 assertEquals(instances[1],rezerwacje[i].getPokoj());
+            }
+        }
+    }
+
+    @ParameterizedTest
+    @MethodSource("provideDates")
+    void testSprawdzZgodnoscTerminow(ArrayList<LocalDate[]> daty) {
+        for (int i = 0; i <daty.size(); i++) {
+            if(i%2==0){
+                assertFalse(instances[0].sprawdzZgodnoscTerminow(daty.get(i)[0],daty.get(i)[1]));
+            }else{
+                assertTrue(instances[0].sprawdzZgodnoscTerminow(daty.get(i)[0],daty.get(i)[1]));
             }
         }
     }
