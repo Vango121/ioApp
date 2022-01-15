@@ -8,12 +8,15 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
+import org.junit.platform.suite.api.IncludeTags;
+import org.junit.platform.suite.api.Suite;
 
 import static org.junit.jupiter.api.Assertions.*;
-import java.text.ParseException;
 import java.util.List;
 import java.util.stream.Stream;
 
+
+@Suite
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class ControllerTest {
     static Dane dane;
