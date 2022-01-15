@@ -14,7 +14,7 @@ public class Controller {
     private static ArrayList<Komunikat> komunikaty = new ArrayList<>();
     private static ArrayList<Klient> klienci = new ArrayList<>();
     private static ArrayList<Pokoj> pokoje = new ArrayList<>();
-    private static ArrayList<Rezerwacja> rezerwacje = new ArrayList<>();
+    public static ArrayList<Rezerwacja> rezerwacje = new ArrayList<>();
     private static Uzytkownik aktualnyUzytkownik;
     private static int counter = 0;
 
@@ -84,7 +84,7 @@ public class Controller {
         }
     }
 
-    public static void zatwierdzRezerwacje(int val) {
+    public static void zatwierdzRezerwacje(int val) {//
         Rezerwacja rezerwacja = szukajRezerwacje(val);
         rezerwacja.getPokoj().dodajRezerwacje(rezerwacja);
         if (rezerwacja != null) {
