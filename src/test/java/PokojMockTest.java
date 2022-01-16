@@ -34,6 +34,9 @@ public class PokojMockTest {
     @Capturing
     Daty daty;
 
+    @Mocked
+    Rezerwacja rezerwacja;
+
     @Test
     public void testSprawdzZgodnoscTerminow(){
         new MockUp<Daty>(){
@@ -52,4 +55,13 @@ public class PokojMockTest {
         assertTrue(pokoj.sprawdzZgodnoscTerminow(daty.getLocalDate()[0],daty.getLocalDate()[1]));
     }
 
+    @Test
+    public void testDodajRezerwacje(){
+        rezerwacja.setPoczatek(dane.daty.get(1)[0]);
+        rezerwacja.setKoniec(dane.daty.get(1)[1]);
+        new Expectations(rezerwacja){{
+            pokoj.dodajRezerwacje(rezerwacja);
+        }};
+        assertEquals(1,pokoj.getRezerwacje().size());
+    }
 }
