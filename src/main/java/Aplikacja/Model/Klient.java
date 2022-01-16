@@ -8,7 +8,7 @@ public class Klient extends Uzytkownik {
 		super(imie, nazwisko, email, haslo);
 	}
 
-	private ArrayList<Rezerwacja> rezerwacje = new ArrayList<>();
+	public ArrayList<Rezerwacja> rezerwacje = new ArrayList<>();
 
 	public void setRezerwacje(ArrayList<Aplikacja.Model.Rezerwacja> val) {
 		this.rezerwacje = val;
